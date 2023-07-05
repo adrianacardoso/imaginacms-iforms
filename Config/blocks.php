@@ -7,6 +7,9 @@ return [
     "title" => "Formulario",
     "systemName" => "iforms::form",
     "nameSpace" => "Modules\Iforms\View\Components\Form",
+    "childBlocks" => [
+      "titleComponentAttributes" => "ibuilder::title",
+    ],
     "contentFields" => [
       "title" => [
         "name" => "title",
@@ -32,9 +35,10 @@ return [
           "id" => [
             "name" => "id",
             "value" => "1",
+            "columns" => "col-12",
             "type" => "select",
             "props" => [
-              "label" => "Plantilla Para Formulario",
+              "label" => "Formularios disponibles",
             ],
             "loadOptions" => [
               "apiRoute" => "apiRoutes.qform.forms",
@@ -45,6 +49,7 @@ return [
             "name" => "layout",
             "value" => "form-layout-1",
             "type" => "select",
+            "columns" => "col-12",
             "props" => [
               "label" => "Plantilla Para Formulario",
               "options" => [
@@ -52,6 +57,15 @@ return [
                 ["label" => "Formulario Plantilla 2", "value" => "form-layout-2"],
                 ["label" => "Formulario Plantilla 3", "value" => "form-layout-3"],
               ]
+            ]
+          ],
+          "titleComponentActive" => [
+            "name" => "titleComponentActive",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+                "label" => "Activar Titulos Independientes",
+                "options" => $vAttributes["validation"]
             ]
           ],
           "withTitle" => [
@@ -180,7 +194,7 @@ return [
                 "isTranslatable" => true,
                 "columns" => "col-12",
                 "props" => [
-                    "label" => "Descripción"
+                    "label" => "Subtitulo"
                 ]
             ],
             "postDescription" => [
@@ -202,6 +216,9 @@ return [
                 ]
             ],
         ],
+        "childBlocks" => [
+          "titleComponentAttributes" => "ibuilder::title",
+        ],
         "attributes" => [
             "general" => [
                 "title" => "General",
@@ -210,12 +227,20 @@ return [
                         "name" => "layout",
                         "value" => "newsletter-layout-1",
                         "type" => "select",
-                        "columns" => "col-12",
                         "props" => [
                             "label" => "Plantillas Para Newsletter",
                             "options" => [
                                 ["label" => "Newsletter Plantilla 1", "value" => "newsletter-layout-1"]
                             ]
+                        ]
+                    ],
+                    "titleComponentActive" => [
+                        "name" => "titleComponentActive",
+                        "value" => "0",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Activar Titulos Independientes",
+                            "options" => $vAttributes["validation"]
                         ]
                     ],
                     "titleClasses" => [
@@ -233,7 +258,7 @@ return [
                         "type" => "input",
                         "columns" => "col-12",
                         "props" => [
-                            "label" => "Clases para Descripción"
+                            "label" => "Clases para Subtitulo"
                         ]
                     ],
                     "postDescriptionClasses" => [

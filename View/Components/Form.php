@@ -31,6 +31,10 @@ class Form extends Component
   public $colorSubtitle;
   public $colorTitleByClass;
   public $colorSubtitleByClass;
+  public $titleComponent;
+  public $titleComponentActive;
+  public $titleComponentAttributes;
+  public $titleComponentNamespace;
 
   public function __construct($id, $layout = 'form-layout-1', $livewireSubmitEvent = null, $params = [],
                               $fieldsParams = [], $formId = null, $jsSubmitEvent = null, $central = true,
@@ -38,7 +42,9 @@ class Form extends Component
                               $withSubtitle = false, $fontSizeTitle = "24", $fontSizeSubtitle = "14",
                               $colorTitle = null, $colorSubtitle = null, $AlainTitle = "text-left",
                               $AlainSubtitle = "text-left", $colorTitleByClass = "text-primary",
-                              $colorSubtitleByClass = "text-dark"
+                              $colorSubtitleByClass = "text-dark", $titleComponent = null,
+                              $titleComponentActive = false, $titleComponentAttributes = [],
+                              $titleComponentNamespace = null
   )
   {
     $this->id = $id;
@@ -63,6 +69,12 @@ class Form extends Component
     $this->AlainSubtitle = $AlainSubtitle;
     $this->colorTitleByClass = $colorTitleByClass;
     $this->colorSubtitleByClass = $colorSubtitleByClass;
+    $this->titleComponent = $titleComponent ?? "ibuilder::title";
+    $this->titleComponentActive = $titleComponentActive;
+    $this->titleComponentNamespace = $titleComponentNamespace ?? "Modules\Ibuilder\View\Components\Title";
+    $titleComponentAttributes['title'] = $this->title;
+    $titleComponentAttributes['subtitle'] = $this->subtitle;
+    $this->titleComponentAttributes = $titleComponentAttributes;
   }
 
   public function getForm()

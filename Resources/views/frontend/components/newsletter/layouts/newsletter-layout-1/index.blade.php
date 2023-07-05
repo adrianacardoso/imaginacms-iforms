@@ -1,9 +1,13 @@
 <div class="newsletter form-content-{{ $form->system_name }} mb-4 position-relative">
     <x-isite::edit-link link="/iadmin/#/form/fields/{{$form->id}}"
                         :tooltip="trans('iforms::common.editLink.tooltipForm')"/>
-  <h4 class="title {{$titleClasses}}">{{ $title ?? $form->title }}</h4>
-  @if(!empty($description))
-  <p class="description {{$descriptionClasses}}">{{ $description }}</p>
+  @if($titleComponentActive)
+    @include("ibuilder::frontend.partials.title")
+  @else
+    <h4 class="title {{$titleClasses}}">{{ $title ?? $form->title }}</h4>
+    @if(!empty($description))
+    <p class="description {{$descriptionClasses}}">{{ $description }}</p>
+    @endif
   @endif
   <form id="form{{ $form->system_name }}" method="post" action="{{ route('api.iforms.leads.create') }}">
     <input type="hidden" name="form_id" value="{{ $form->id }}" required="">

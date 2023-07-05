@@ -22,6 +22,10 @@ class Newsletter extends Component
     public $postDescriptionClasses;
     public $buttonClasses;
     public $inputClasses;
+    public $titleComponent;
+    public $titleComponentActive;
+    public $titleComponentAttributes;
+    public $titleComponentNamespace;
 
     public function __construct($layout = 'newsletter-layout-1',
                                 $title = '',
@@ -33,7 +37,11 @@ class Newsletter extends Component
                                 $descriptionClasses = 'mb-3',
                                 $postDescriptionClasses = "mb-3",
                                 $buttonClasses = "btn btn-primary px-3",
-                                $inputClasses = "bg-transparent"
+                                $inputClasses = "bg-transparent",
+                                $titleComponent = null,
+                                $titleComponentActive = false,
+                                $titleComponentAttributes = [],
+                                $titleComponentNamespace = null
     )
     {
         $this->layout = $layout ?? 'newsletter-layout-1';
@@ -49,6 +57,12 @@ class Newsletter extends Component
         $this->submitLabel = $submitLabel ?? trans('iforms::forms.button.subscribe');
         $this->central = $central;
         $this->getOrAddForm();
+        $this->titleComponent = $titleComponent ?? "ibuilder::title";
+        $this->titleComponentActive = $titleComponentActive;
+        $this->titleComponentNamespace = $titleComponentNamespace ?? "Modules\Ibuilder\View\Components\Title";
+        $titleComponentAttributes['title'] = $this->title;
+        $titleComponentAttributes['subtitle'] = $this->description;
+        $this->titleComponentAttributes = $titleComponentAttributes;
     }
 
     public function getOrAddForm(){

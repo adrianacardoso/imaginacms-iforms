@@ -6,15 +6,19 @@
   </div>
 </div>
 <div id="formLayout1" class="content-form{{$formId}} position-relative">
-  @if($withTitle)
-    <div class="title-section {{$colorTitleByClass}} {{$AlainTitle}}">
-      {{$title}}
-    </div>
-  @endif
-  @if($withSubtitle)
-    <div class="subtitle-section {{$colorSubtitleByClass}} {{$AlainSubtitle}}">
-      {{$subtitle}}
-    </div>
+  @if($titleComponentActive)
+    @include("ibuilder::frontend.partials.title")
+  @else
+      @if($withTitle)
+        <div class="title-section {{$colorTitleByClass}} {{$AlainTitle}}">
+          {{$title}}
+        </div>
+      @endif
+      @if($withSubtitle)
+        <div class="subtitle-section {{$colorSubtitleByClass}} {{$AlainSubtitle}}">
+          {{$subtitle}}
+        </div>
+      @endif
   @endif
   <x-isite::edit-link link="/iadmin/#/form/fields/{{$form->id}}"
                       :tooltip="trans('iforms::common.editLink.tooltipForm')"/>
@@ -51,6 +55,7 @@
 @include('iforms::frontend.components.form.layouts.mainlayout')
 
 <style>
+    @if(!$titleComponentActive)
     #formLayout1 .title-section {
         color: {{$colorTitle}};
         font-size: {{$fontSizeTitle}}px;
@@ -59,6 +64,7 @@
         color: {{$colorSubtitle}};
         font-size: {{$fontSizeSubtitle}}px;
     }
+    @endif
     #formLayout1 .form-group .col-style {
         margin-bottom: 10px;
     }
